@@ -17,7 +17,7 @@ class _FacultyMemberDetailsState extends State<FacultyMemberDetails> {
       appBar: AppBar(title: Text('Faculty Member Details'),centerTitle: true,),
       body: Column(
         children: [
-          Image.asset('${widget.dImage}'),
+          Image.asset('${widget.dImage}',fit: BoxFit.fill,width: MediaQuery.of(context).size.width,),
           Text('${widget.fMemberName}'),
           Text('${widget.dName}'),
         ],

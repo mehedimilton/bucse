@@ -120,16 +120,18 @@ class _HomeClassState extends State<HomeClass> {
               width: size.width,
               fit: BoxFit.fill,
             ),
-            Container(
-              height: size.height * .55,
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, mainAxisExtent: size.height * .2),
-                  itemCount: 7,
-                  itemBuilder: (context, index) {
-                    return GridBuilderTile(index: index);
-                  }),
+            Expanded(
+              child: Container(
+                height: size.height * .55,
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisExtent: size.height * .2),
+                    itemCount: 7,
+                    itemBuilder: (context, index) {
+                      return GridBuilderTile(index: index);
+                    }),
+              ),
             )
           ],
         ),

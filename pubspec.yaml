@@ -78,6 +78,22 @@ flutter:
     - images/home_icon/department.png
     - images/home_icon/destination.png
     - images/home_icon/customer-service.png
+    # Faculty Members
+    - images/faculty_members/Arifin.Sir_2-150x150.jpg
+    - images/faculty_members/AsrafAli.jpg
+    - images/faculty_members/Ibrahim.Sir_1-300x300.jpg
+    - images/faculty_members/parvez.jpg
+    - images/faculty_members/Nayeem.jpeg
+    - images/faculty_members/rk.jpg
+    - images/faculty_members/Hasib.jpg
+    - images/faculty_members/Shampa.jpg
+    - images/faculty_members/yeasir-sir.png
+    - images/faculty_members/Iftekharul.png
+    - images/faculty_members/jubayer.jpg
+    - images/faculty_members/Shishir.jpg
+    - images/faculty_members/salma.jpg
+    - images/faculty_members/riaz-uddin.jpg
+    - images/faculty_members/Nazim.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
