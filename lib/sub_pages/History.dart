@@ -22,7 +22,7 @@ class _HistoryClassState extends State<HistoryClass> {
         padding: EdgeInsetsDirectional.all(8),
         child: Container(
           child: SizedBox(
-            height: 500,
+            height: 1100,
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
@@ -65,7 +65,7 @@ class _HistoryClassState extends State<HistoryClass> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.asset("images/history1.jpg"),
+                          child: Image.asset("images/history1.jpg",fit: BoxFit.fill,width: MediaQuery.of(context).size.width,),
                         ),
                         SizedBox(height: 20,),
                         Text(

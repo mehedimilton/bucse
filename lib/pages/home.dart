@@ -5,7 +5,11 @@ import 'package:bucseproject/pages/campus.dart';
 import 'package:bucseproject/pages/departments.dart';
 import 'package:bucseproject/pages/my_account.dart';
 import 'package:bucseproject/pages/site_map.dart';
+import 'package:bucseproject/sub_pages/History.dart';
+import 'package:bucseproject/sub_pages/faculty_member_details.dart';
+import 'package:bucseproject/sub_pages/faculty_member_list.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeClass extends StatefulWidget {
   const HomeClass({Key? key}) : super(key: key);
@@ -57,6 +61,10 @@ class _HomeClassState extends State<HomeClass> {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FacultyMemberList()));
+              },
               trailing: Icon(Icons.arrow_forward_ios),
               title: Text(
                 "Faculty Memember",
@@ -78,6 +86,10 @@ class _HomeClassState extends State<HomeClass> {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HistoryClass()));
+              },
               trailing: Icon(Icons.arrow_forward_ios),
               title: Text(
                 "History",
@@ -150,7 +162,7 @@ class GridBuilderTile extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return InkWell(
-      onTap: () {
+      onTap: () async{
         if (index == 0) {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => MyAccount()));
@@ -170,8 +182,25 @@ class GridBuilderTile extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => About()));
         } else {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SiteMap()));
+
+            //double.parse(widget.latitude),double.parse(widget.longitude)
+            double lat = 23.7614762;
+            double long =90.3673922;
+            final String googleMapslocationUrl =
+                "https://www.google.com/maps/search/?api=1&query=$lat,$long";
+
+            final String encodedURl =
+            Uri.encodeFull(googleMapslocationUrl);
+
+            if (await canLaunch(encodedURl)) {
+        await launch(encodedURl);
+        } else {
+        print('Could not launch $encodedURl');
+        throw 'Could not launch $encodedURl';
+        }
+
+          // Navigator.push(
+          //     context, MaterialPageRoute(builder: (context) => SiteMap()));
         }
       },
       splashColor: Theme.of(context).primaryColor,
@@ -234,108 +263,11 @@ class GridBuilderTile extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Theme.of(context).primaryColor, //Color(0xff00C5A4),
-                fontSize: size.height * .03,
+                fontSize: size.height * .022,
                 fontWeight: FontWeight.bold),
           )
         ],
       )),
-
-      ///
-      // Card(
-      //   child: Container(
-      //     alignment: Alignment.center,
-      //     child: Text(
-      //       index==0?'About'
-      //       :index==1?'Academic'
-      //       :index==2?'Academic '
-      //       :index==3?'Academic '
-      //       :index==4?'Academic '
-      //       :'Academic ',
-      //
-      //       style: TextStyle(
-      //         fontSize: size.height*.03
-      //       ),
-      //
-      //     ),
-      //   ),
-      // )
-      ///
-      // Container(
-      //   //color: Color(0xffF4F7F5),
-      //     child: Column(
-      //       crossAxisAlignment: CrossAxisAlignment.center,
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       children: [
-      //         Stack(alignment: Alignment.center, children: [
-      //           Container(
-      //             height: size.width*.17,
-      //             width: size.width*.17,
-      //             decoration: BoxDecoration(
-      //               color: Color(0xffF4F7F5),
-      //               borderRadius: BorderRadius.all(Radius.circular(40)),
-      //             ),
-      //           ),
-      //           // Container(
-      //           //   decoration: BoxDecoration(
-      //           //     image: DecorationImage(
-      //           //       image: index == 0
-      //           //           ? AssetImage(
-      //           //           'assets/home_icon/account.png')
-      //           //           :index == 1
-      //           //           ? AssetImage('assets/home_icon/doctor.png')
-      //           //           : index == 2
-      //           //           ? AssetImage('assets/home_icon/appointment.png')
-      //           //           : index == 3
-      //           //           ? AssetImage('assets/home_icon/shop.png')
-      //           //           : index == 4
-      //           //           ? AssetImage('assets/home_icon/medicine.png')
-      //           //           :index==5
-      //           //           ? AssetImage('assets/home_icon/notifications.png')
-      //           //           : index == 6
-      //           //           ? AssetImage(
-      //           //           'assets/home_icon/shopping.png')
-      //           //           : index == 7
-      //           //           ? AssetImage(
-      //           //           'assets/home_icon/forum.png')
-      //           //           : index == 8
-      //           //           ? AssetImage(
-      //           //           'assets/home_icon/blog.png')
-      //           //           : index == 9
-      //           //           ? AssetImage(
-      //           //           'assets/home_icon/credit_assesment.png')
-      //           //           : index == 10
-      //           //           ? AssetImage(
-      //           //           'assets/home_icon/health_insurance.png')
-      //           //           : index == 11
-      //           //           ? AssetImage(
-      //           //           'assets/home_icon/join_riders.png')
-      //           //           : AssetImage(
-      //           //           'assets/home_icon/support.png'),
-      //           //     ),
-      //           //   ),
-      //           //   height: size.width*.09,
-      //           //   width: size.width*.09,
-      //           // ),
-      //         ]),
-      //         SizedBox(height: 5),
-      //         Text(
-      //           index == 0
-      //               ? 'My Account'
-      //               :index == 1
-      //               ? 'Doctors'
-      //               : index == 2
-      //               ? 'Appointment'
-      //               : index == 3
-      //               ? 'Discount Shop'
-      //               : 'Support Center',
-      //           textAlign: TextAlign.center,
-      //           style: TextStyle(
-      //               color: Theme.of(context).primaryColor, //Color(0xff00C5A4),
-      //               fontSize: size.width*.04,
-      //               fontWeight: FontWeight.bold),
-      //         )
-      //       ],
-      //     )),
     );
   }
 }

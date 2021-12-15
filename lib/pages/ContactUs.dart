@@ -71,7 +71,7 @@ class _ContractUsClassState extends State<ContractUsClass> {
                             style: TextStyle(fontSize: 20),
                           ),
                           onPressed: () => launch(
-                              "https://www.facebook.com/bangladeshuniversitydepartmentofcse/"),
+                              "https://www.facebook.com/bangladeshuni/"),
                         ),
                       ),
                     ],
