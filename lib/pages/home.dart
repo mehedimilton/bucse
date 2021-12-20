@@ -5,9 +5,11 @@ import 'package:bucseproject/pages/campus.dart';
 import 'package:bucseproject/pages/departments.dart';
 import 'package:bucseproject/pages/my_account.dart';
 import 'package:bucseproject/pages/site_map.dart';
-import 'package:bucseproject/sub_pages/History.dart';
+import 'package:bucseproject/sub_pages/about-cse.dart';
+import 'package:bucseproject/sub_pages/history.dart';
 import 'package:bucseproject/sub_pages/faculty_member_details.dart';
 import 'package:bucseproject/sub_pages/faculty_member_list.dart';
+import 'package:bucseproject/sub_pages/photogallery.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -43,6 +45,10 @@ class _HomeClassState extends State<HomeClass> {
               height: 30,
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutCse()));
+              },
               trailing: Icon(Icons.arrow_forward_ios),
               title: Text(
                 "About CSE",
@@ -79,6 +85,10 @@ class _HomeClassState extends State<HomeClass> {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PhotoGallery()));
+              },
               trailing: Icon(Icons.arrow_forward_ios),
               title: Text(
                 "Photo Gallery",

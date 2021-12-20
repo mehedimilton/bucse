@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'faculty_member_details.dart';
 
 class FacultyMemberList extends StatefulWidget {
-  const FacultyMemberList({Key? key}) : super(key: key);
 
   @override
   _FacultyMemberListState createState() => _FacultyMemberListState();
@@ -30,7 +29,7 @@ class _FacultyMemberListState extends State<FacultyMemberList> {
       ),
       body: ListView.builder(
           itemCount: faculty.length,
-          itemBuilder: (context, index) {
+          itemBuilder: (context, index) { 
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -61,13 +60,6 @@ class _FacultyMemberListState extends State<FacultyMemberList> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(size.height*0.012),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Colors.white,
-                    //     blurRadius: 1,
-                    //     spreadRadius: 1
-                    //   )
-                    // ],
                     border: Border.all(
                         color: Colors.grey,
                         width: 2
@@ -82,12 +74,13 @@ class _FacultyMemberListState extends State<FacultyMemberList> {
                       height: size.height * 0.12,
                       fit: BoxFit.fill,
                     ),
+                    SizedBox(width: 5,),
                     Expanded(
                       child: Column(
                         // mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('${faculty[index].fMemberName}'),
+                          Text('${faculty[index].fMemberName}',style: TextStyle(fontWeight: FontWeight.bold),),
                           Text('${faculty[index].fdesignation}'),
                           Text('${faculty[index].dName}'),
 
