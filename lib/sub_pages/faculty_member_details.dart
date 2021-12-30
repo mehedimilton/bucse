@@ -1,26 +1,38 @@
-import 'package:bucseproject/widget/decoration.dart';
+import 'package:bucseproject/widgets/heading_decoraion.dart';
 import 'package:flutter/material.dart';
 class FacultyMemberDetails extends StatefulWidget {
-  String? dName;
-  String? fImage;
-  String? fMemberName;
+  String? id;
   String? fid;
+  String? fpassword;
+  String? fphone;
+  String? departmentname;
+  String? fimage;
+  String? fmembername;
+  String? fmemberemail;
   String? fdesignation;
   String? facademicqualification;
   String? fteachingarea;
   String? fresearch;
   String? fjournalpublication;
+  String? submitdate;
+  String? timestamp;
 
-  FacultyMemberDetails({
-    this.dName,
-    this.fImage,
-    this.fMemberName,
-    this.fid,
-    this.fdesignation,
-    this.facademicqualification,
-    this.fteachingarea,
-    this.fresearch,
-    this.fjournalpublication});
+  FacultyMemberDetails(
+      {
+        this.id,
+        this.fid,
+        this.fpassword,
+        this.fphone,
+        this.departmentname,
+        this.fimage,
+        this.fmembername,
+        this.fmemberemail,
+        this.fdesignation,
+        this.facademicqualification,
+        this.fteachingarea,
+        this.fresearch,
+        this.fjournalpublication,
+      });
 
   @override
   _FacultyMemberDetailsState createState() => _FacultyMemberDetailsState();
@@ -37,7 +49,15 @@ class _FacultyMemberDetailsState extends State<FacultyMemberDetails> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(child: Image.asset('${widget.fImage}',fit: BoxFit.fill,width: MediaQuery.of(context).size.width,)),
+              Container(child: widget.fimage!=null ?Image.network(
+                '${widget.fimage}',
+                width: size.width,
+                height: size.height * 0.3,
+                fit: BoxFit.fill,
+              ):Image.asset('images/user.png',width: size.width ,
+                height: size.height * 0.3,
+                fit: BoxFit.fill,),
+              ),
               SizedBox(height: 10,),
               Container(
                 width: size.width,
@@ -49,9 +69,9 @@ class _FacultyMemberDetailsState extends State<FacultyMemberDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Faculty Id :  ${widget.fid}',style: TextStyle(color: Colors.white),),
-                    Text('Faculty Name : ${widget.fMemberName}',style: TextStyle(color: Colors.white),),
+                    Text('Faculty Name : ${widget.fmembername}',style: TextStyle(color: Colors.white),),
                     Text('Designation : ${widget.fdesignation}',style: TextStyle(color: Colors.white),),
-                    Text('Department : ${widget.dName}',style: TextStyle(color: Colors.white),),
+                    Text('Department : ${widget.departmentname}',style: TextStyle(color: Colors.white),),
                   ],
                 ),
               ),

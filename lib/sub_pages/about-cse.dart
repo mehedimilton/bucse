@@ -1,4 +1,4 @@
-import 'package:bucseproject/widget/decoration.dart';
+import 'package:bucseproject/widgets/heading_decoraion.dart';
 import 'package:flutter/material.dart';
 class AboutCse extends StatefulWidget {
   const AboutCse({Key? key}) : super(key: key);

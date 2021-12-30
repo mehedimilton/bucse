@@ -5,6 +5,7 @@ import 'package:bucseproject/pages/campus.dart';
 import 'package:bucseproject/pages/departments.dart';
 import 'package:bucseproject/pages/my_account.dart';
 import 'package:bucseproject/pages/site_map.dart';
+import 'package:bucseproject/pages/syllabus.dart';
 import 'package:bucseproject/sub_pages/about-cse.dart';
 import 'package:bucseproject/sub_pages/history.dart';
 import 'package:bucseproject/sub_pages/faculty_member_details.dart';
@@ -78,6 +79,10 @@ class _HomeClassState extends State<HomeClass> {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SylabusClass()));
+              },
               trailing: Icon(Icons.arrow_forward_ios),
               title: Text(
                 "Syllabus",

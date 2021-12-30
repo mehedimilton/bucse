@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-// void hTextStyle(){
-//   return TextStyle(
-//   )
-// }
+
 Widget Heading(String headigTxt,double hTxtSize,double hWidth, Color hColor,Color hTxtColor){
   return Container(
     width: hWidth,

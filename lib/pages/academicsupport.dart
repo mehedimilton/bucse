@@ -49,7 +49,8 @@ class _AcademicSupportState extends State<AcademicSupport> {
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
-                        )),
+                        ),
+                    ),
                   ),
                   SizedBox(
                     height: 5,
