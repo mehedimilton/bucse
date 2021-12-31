@@ -135,7 +135,7 @@ class AuthProvider extends ChangeNotifier {
       });
       notifyListeners();
       print( _facultyCategoryList.length);
-    }catch(error){error.toString();}
+    }catch(error){'error.toString()';}
   }
 // Future <void> getImages()async{
 //   ///final String id = await getPreferenceId();

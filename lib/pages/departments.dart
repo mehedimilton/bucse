@@ -25,8 +25,6 @@ class _DepartmentsState extends State<Departments> {
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: (){
-           // authProvider.loadingMgs = 'Submitting information...';
-            showLoadingDialog(context,authProvider);
             Navigator.push(context, MaterialPageRoute(builder: (context)=>AddFaculty()));
             //Navigator.pop(context);
           },
@@ -45,7 +43,7 @@ class _DepartmentsState extends State<Departments> {
                     mainAxisExtent: size.height * .12,
                     mainAxisSpacing: size.height * .01,
                     crossAxisSpacing: size.width * .015),
-                itemCount: 8,
+                itemCount: StaticVariables.departments.length,
                 itemBuilder: (context, index) {
                   return GridBuilderTile(index: index);
                 }),
@@ -71,39 +69,6 @@ class GridBuilderTile extends StatelessWidget {
             MaterialPageRoute(builder: (context) => FacultyMemberList(
                 departmentname:StaticVariables.departments[index!]
             )));
-
-        if (index == 0) {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => FacultyMemberList()));
-        } else if (index == 1) {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => Departments()));
-
-        } else if (index == 2) {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => Campuses()));
-
-        } else if (index == 3) {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => AcademicSupport()));
-
-        } else if (index == 4) {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => ContractUsClass()));
-
-        } else if (index == 5) {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => About()));
-
-        } else if (index == 6) {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => About()));
-
-        } else {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => SiteMap()));
-
-        }
       },
       splashColor: Theme.of(context).primaryColor,
       child: Container(

@@ -1,4 +1,3 @@
-import 'package:bucseproject/pages/home.dart';
 import 'package:bucseproject/provider/auth_provider.dart';
 import 'package:bucseproject/splesh_screanf.dart';
 import 'package:flutter/material.dart';

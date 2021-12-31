@@ -67,17 +67,17 @@ class _HomeClassState extends State<HomeClass> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            ListTile(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FacultyMemberList()));
-              },
-              trailing: Icon(Icons.arrow_forward_ios),
-              title: Text(
-                "Faculty Memember",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
+            // ListTile(
+            //   onTap: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => FacultyMemberList()));
+            //   },
+            //   trailing: Icon(Icons.arrow_forward_ios),
+            //   title: Text(
+            //     "Faculty Memember",
+            //     style: TextStyle(fontWeight: FontWeight.bold),
+            //   ),
+            // ),
             ListTile(
               onTap: () {
                 Navigator.push(context,
@@ -122,6 +122,9 @@ class _HomeClassState extends State<HomeClass> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
+            SizedBox(
+              height:10,
+            ),
             Divider(),
             ListTile(
               onTap: () {
@@ -154,7 +157,7 @@ class _HomeClassState extends State<HomeClass> {
                 child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2, mainAxisExtent: size.height * .2),
-                    itemCount: 7,
+                    itemCount: 6,
                     itemBuilder: (context, index) {
                       return GridBuilderTile(index: index);
                     }),
@@ -178,22 +181,23 @@ class GridBuilderTile extends StatelessWidget {
 
     return InkWell(
       onTap: () async{
+        // if (index == 0) {
+        //   Navigator.push(
+        //       context, MaterialPageRoute(builder: (context) => MyAccount()));
+        // }
         if (index == 0) {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MyAccount()));
+              context, MaterialPageRoute(builder: (context) => Departments()));
         } else if (index == 1) {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Departments()));
-        } else if (index == 2) {
-          Navigator.push(
               context, MaterialPageRoute(builder: (context) => Campuses()));
-        } else if (index == 3) {
+        } else if (index == 2) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => AcademicSupport()));
-        } else if (index == 4) {
+        } else if (index == 3) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => ContractUsClass()));
-        } else if (index == 5) {
+        } else if (index == 4) {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => About()));
         } else {
@@ -237,19 +241,20 @@ class GridBuilderTile extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: index == 0
-                      ? AssetImage('images/home_icon/account.png')
-                      : index == 1
+                   image:
+                   index == 0
+                      // ? AssetImage('images/home_icon/account.png')
+                      //  index == 1
                           ? AssetImage('images/home_icon/department.png')
-                          : index == 2
+                          : index == 1
                               ? AssetImage('images/home_icon/campus.png')
-                              : index == 3
+                              : index == 2
                                   ? AssetImage(
                                       'images/home_icon/customer-service.png')
-                                  : index == 4
+                                  : index == 3
                                       ? AssetImage(
                                           'images/home_icon/contact.png')
-                                      : index == 5
+                                      : index == 4
                                           ? AssetImage(
                                               'images/home_icon/about us.png')
                                           : AssetImage(
@@ -263,16 +268,16 @@ class GridBuilderTile extends StatelessWidget {
           SizedBox(height: 2),
           Text(
             index == 0
-                ? 'My Account'
-                : index == 1
+                // ? 'My Account'
+                // : index == 1
                     ? 'Departments'
-                    : index == 2
+                    : index == 1
                         ? 'Campuses'
-                        : index == 3
+                        : index == 2
                             ? 'Academic Support'
-                            : index == 4
+                            : index == 3
                                 ? 'Contact Us'
-                                : index == 5
+                                : index == 4
                                     ? 'About Us'
                                     : 'Site Map',
             textAlign: TextAlign.center,

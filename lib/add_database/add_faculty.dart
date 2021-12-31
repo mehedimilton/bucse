@@ -16,6 +16,7 @@ class AddFaculty extends StatefulWidget {
 
 class _AddFacultyState extends State<AddFaculty> {
   GlobalKey <ScaffoldState> _scaffoldKey=GlobalKey();
+  final _formKey=GlobalKey<FormState>();
   ImagePicker picker = ImagePicker();
   File? _image;
   @override
@@ -43,9 +44,6 @@ class _AddFacultyState extends State<AddFaculty> {
             height: size.height * 0.3,
             fit: BoxFit.fill,),
           ),
-          // ClipRRect(
-          //   child: Image.asset(name),
-          // ),
           SizedBox(height:size.width*0.04),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -56,9 +54,6 @@ class _AddFacultyState extends State<AddFaculty> {
                } ,
                icon: Icon(Icons.camera_alt,size: 40,),
                color: Colors.blue,
-               // style:ButtonStyle(
-               //   backgroundColor: Color(Colors.blue),
-               // ),
              ),
              SizedBox(width:size.width*0.08),
 
@@ -68,88 +63,96 @@ class _AddFacultyState extends State<AddFaculty> {
                  } ,
                icon: Icon(Icons.image,size: 40,),
                color: Colors.blue,
-               // style:ButtonStyle(
-               //   backgroundColor: Color(Colors.blue),
-               // ),
              ),
            ],
           ),
           Divider(),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Name',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Phone Number',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Faculty ID',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Password',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Email',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Designation',authProvider),
-          SizedBox(height:size.width*0.08),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 12,vertical: 5),
-            decoration: BoxDecoration(
-                // color: Color(0xffF4F7F5),
-                borderRadius: BorderRadius.all(Radius.circular(3)),
-              border: Border.all(
-                color: Colors.black,
-                width: 3
-              )
-            ),
-            width: MediaQuery.of(context).size.width,
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton(
-                value:  authProvider.facultyModel.departmentname,
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Name',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Phone Number',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Faculty ID',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Password',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Email',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Designation',authProvider),
+                SizedBox(height:size.width*0.08),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 5),
+                  decoration: BoxDecoration(
+                    // color: Color(0xffF4F7F5),
+                      borderRadius: BorderRadius.all(Radius.circular(3)),
+                      border: Border.all(
+                          color: Colors.black,
+                          width: 3
+                      )
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                      value:  authProvider.facultyModel.departmentname,
 
-                hint: Container(
-                  width: size.width*.75,
-                  child: Text('Select Departent',style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: size.height*0.023)),
-                ),
-                items: StaticVariables.departments.map((gender){
-                  return DropdownMenuItem(
-                    child: Container(
-                      width: size.width*.75,
-                      child: Text(gender,style: TextStyle(
-                        color: Colors.grey[900],
-                        fontSize: 16,)),
+                      hint: Container(
+                        width: size.width*.75,
+                        child: Text('Select Departent',style: TextStyle(
+                            color: Colors.grey[700],
+                            fontSize: size.height*0.023)),
+                      ),
+                      items: StaticVariables.departments.map((gender){
+                        return DropdownMenuItem(
+                          child: Container(
+                            width: size.width*.75,
+                            child: Text(gender,style: TextStyle(
+                              color: Colors.grey[900],
+                              fontSize: 16,)),
+                          ),
+                          value: gender,
+                        );
+                      }).toList(),
+                      onChanged: (newValue){
+                        setState(() {
+                          authProvider.facultyModel.departmentname = newValue as String?;
+                        });
+                      },
+                      dropdownColor: Colors.white,
                     ),
-                    value: gender,
-                  );
-                }).toList(),
-                onChanged: (newValue){
-                  setState(() {
-                    authProvider.facultyModel.departmentname = newValue as String?;
-                  });
-                },
+                  ),
+                ),
+                //_textFieldBuilder('Department',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Academic Qualification',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Teaching Area',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Research',authProvider),
+                SizedBox(height:size.width*0.08),
+                _textFieldBuilder('Journal Publication',authProvider),
+                SizedBox(height:size.width*0.08),
 
-                dropdownColor: Colors.white,
-              ),
+                InkWell(
+                  onTap: ()async{
+                    if(_formKey.currentState!.validate()){
+                      authProvider.loadingMgs = 'Submitting information...';
+                      showLoadingDialog(context,authProvider);
+                      // Navigator.pop(context);
+                      await authProvider.addFaculty(_scaffoldKey,context, authProvider,authProvider.facultyModel, _image!);
+                      // Navigator.pu(context, MaterialPageRoute(builder: (context)=>AddFaculty()));
+                    }
+                    },
+                  child: button(context,'Submit'),
+                )
+              ],
             ),
-          ),
-          //_textFieldBuilder('Department',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Academic Qualification',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Teaching Area',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Research',authProvider),
-          SizedBox(height:size.width*0.08),
-          _textFieldBuilder('Journal Publication',authProvider),
-          SizedBox(height:size.width*0.08),
 
-          InkWell(
-            onTap: ()async{
-              authProvider.loadingMgs = 'Submitting information...';
-              showLoadingDialog(context,authProvider);
-              // Navigator.pop(context);
-              await authProvider.addFaculty(_scaffoldKey,context, authProvider,authProvider.facultyModel, _image!);
-            },
-            child: button(context,'Submit'),
-          )
+          ),
+
         ],
       ),
       ),
@@ -158,11 +161,6 @@ class _AddFacultyState extends State<AddFaculty> {
   Widget _textFieldBuilder(String hintTxt,AuthProvider authProvider){
     Size size=MediaQuery.of(context).size;
     return  TextFormField(
-      // controller: hintTxt=='Name'?nameEditingController
-      //     :hintTxt=='Phone Number'?phoneEditingController
-      //     :hintTxt=='Email'?emailEditingController
-      //     :passwordEditingController,
-      // obscureText: hintTxt=='Password'?obscure:false,
       keyboardType: hintTxt=='Phone Number'?TextInputType.phone
           : hintTxt=='Faculty ID'?TextInputType.phone
           :TextInputType.text,
@@ -178,8 +176,6 @@ class _AddFacultyState extends State<AddFaculty> {
           //         : Icon(Icons.remove_red_eye),
           //     onPressed: () =>
           //         setState(() => obscure = !obscure)):null
-
-
       ),
       validator: (value) {
         if (value!.isEmpty) {
@@ -195,12 +191,10 @@ class _AddFacultyState extends State<AddFaculty> {
               :hintTxt=='Password'?authProvider.facultyModel.fpassword=value
               :hintTxt=='Email'?authProvider.facultyModel.fmemberemail=value
               :hintTxt=='Designation'?authProvider.facultyModel.fdesignation=value
-              //:hintTxt=='Department'?authProvider.facultyModel.departmentname=value
               :hintTxt=='Academic Qualification'?authProvider.facultyModel.facademicqualification=value
               :hintTxt=='Teaching Area'?authProvider.facultyModel.fteachingarea=value
               :hintTxt=='Research'?authProvider.facultyModel.fresearch=value
               :authProvider.facultyModel.fjournalpublication=value;
-
         });
       },
 
@@ -209,17 +203,20 @@ class _AddFacultyState extends State<AddFaculty> {
   Future<void> _getImageFromGallery(AuthProvider authProvider)async{
     final pickedFile = await picker.pickImage(source: ImageSource.gallery,maxWidth: 300,maxHeight: 300);
     if(pickedFile!=null){
-      _image = File(pickedFile.path);
+      setState(() {
+        _image = File(pickedFile.path);
+      });
     }else {
      // showSnackBar(_scaffoldKey, 'No image selected', Colors.deepOrange);
       Navigator.pop(context);
     }
-
   }
 Future<void> _getImageFromCamera(AuthProvider authProvider)async{
     final pickedFile = await picker.pickImage(source: ImageSource.camera,maxWidth: 300,maxHeight: 300);
     if(pickedFile!=null){
-      _image = File(pickedFile.path);
+      setState(() {
+        _image = File(pickedFile.path);
+      });
     }else {
      // showSnackBar(_scaffoldKey, 'No image selected', Colors.deepOrange);
       Navigator.pop(context);
